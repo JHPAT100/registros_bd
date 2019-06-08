@@ -29,6 +29,8 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener{
     EditText te_1,te_2;
     private  int dia,mes,ano,hora,minutos;
+    String month;
+    String day;
     String mas;
     //barra de progreso
     ProgressDialog progreso;
@@ -61,7 +63,21 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
                 DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        te_1.setText(year+"/"+"0"+(monthOfYear+1)+"/"+"0"+dayOfMonth);
+                        //te_1.setText(year+"/"+"0"+(monthOfYear+1)+"/"+dayOfMonth);
+                        if(monthOfYear < 10){
+
+                          month = "0" + monthOfYear;
+                        }else if(monthOfYear >=10){
+                            month=""+monthOfYear;
+                        }
+                        if(dayOfMonth < 10){
+
+                           day  = "0" + dayOfMonth ;
+                        }
+                        else if(dayOfMonth>=10){
+                        day=""+dayOfMonth;
+                    }
+                        te_1.setText(year+"/"+month+"/"+day);
                     }
                 }
                         ,ano,mes,dia);
